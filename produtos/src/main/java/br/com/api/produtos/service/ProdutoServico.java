@@ -23,8 +23,8 @@ public class ProdutoServico {
         return pr.findAll();
     }
 
-    //Método para cadastrar produtos
-    public ResponseEntity<?> cadastrar(ProdutoModel pm){
+    //Método para cadastrar ou alterar produtos
+    public ResponseEntity<?> cadastrarAlterar(ProdutoModel pm, String acao){
         if (pm.getName().equals("")) {
             rm.setMensagem("O nome do produto é obrigatorio");
             return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
@@ -32,9 +32,11 @@ public class ProdutoServico {
             rm.setMensagem("O nome da marca é obrigatório");
             return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
         }else{
-            return new ResponseEntity<ProdutoModel>(pr.save(pm), HttpStatus.CREATED);
-        }
-        
-    }
-    
+            if (acao.equals("cadastrar")) {
+                return new ResponseEntity<ProdutoModel>(pr.save(pm), HttpStatus.CREATED);
+            }else{
+                return new ResponseEntity<ProdutoModel>(pr.save(pm), HttpStatus.OK);
+            }
+        }        
+    }      
 }
