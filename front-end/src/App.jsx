@@ -37,24 +37,35 @@ const App = () => {
       body: JSON.stringify(objProduto),
       headers: {
         "Content-type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
     })
-    .then(retorno => retorno.json())
-    .then(retorno_convertido => {
-      if (retorno_convertido.mensagem !== undefined) {
-        alert(retorno_convertido.mensagem)
-      }else{
-        setProdutos([...produtos, retorno_convertido])
-        alert('Produto cadstrado com sucesso!')
-      }
-    })
+      .then((retorno) => retorno.json())
+      .then((retorno_convertido) => {
+        if (retorno_convertido.mensagem !== undefined) {
+          alert(retorno_convertido.mensagem);
+        } else {
+          setProdutos([...produtos, retorno_convertido]);
+          alert("Produto cadstrado com sucesso!");
+          limparFormulario();
+        }
+      });
+  };
+
+  //Limpar formulário
+  const limparFormulario = () => {
+    setObjProduto(produto);
   };
 
   //Retorno
   return (
     <>
-      <FormComponent botao={btnCadastrar} eventoTeclado={aoDigitar} cadastrar={cadastrar} />
+      <FormComponent
+        botao={btnCadastrar}
+        eventoTeclado={aoDigitar}
+        cadastrar={cadastrar}
+        obj={objProduto}
+      />
       <TableComponent vetor={produtos} />
     </>
   );

@@ -1,4 +1,4 @@
-const FormComponent = ({botao, eventoTeclado, cadastrar}) => {
+const FormComponent = ({botao, eventoTeclado, cadastrar, obj}) => {
   return (
     <>
       <form>
@@ -9,6 +9,7 @@ const FormComponent = ({botao, eventoTeclado, cadastrar}) => {
           name='name'
           type="text"
           placeholder="Nome"
+          value={obj.name}
         />
         <input
           className="form-control"
@@ -16,6 +17,7 @@ const FormComponent = ({botao, eventoTeclado, cadastrar}) => {
           name="marca"
           type="text"
           placeholder="Marca"
+          value={obj.marca}
         />
 
         {botao ? (
