@@ -1,4 +1,4 @@
-const FormComponent = ({botao, eventoTeclado, cadastrar, obj}) => {
+const FormComponent = ({botao, eventoTeclado, cadastrar, obj, cancelar}) => {
   return (
     <>
       <form>
@@ -6,7 +6,7 @@ const FormComponent = ({botao, eventoTeclado, cadastrar, obj}) => {
         <input
           className="form-control"
           onChange={eventoTeclado}
-          name='name'
+          name="name"
           type="text"
           placeholder="Nome"
           value={obj.name}
@@ -21,7 +21,12 @@ const FormComponent = ({botao, eventoTeclado, cadastrar, obj}) => {
         />
 
         {botao ? (
-          <input className="btn btn-primary" type="button" value="Cadastrar" onClick={cadastrar} />
+          <input
+            className="btn btn-primary"
+            type="button"
+            value="Cadastrar"
+            onClick={cadastrar}
+          />
         ) : (
           <div>
             <input className="btn btn-warning" type="button" value="Alterar" />
@@ -30,6 +35,7 @@ const FormComponent = ({botao, eventoTeclado, cadastrar, obj}) => {
               className="btn btn-secondary"
               type="button"
               value="Cancelar"
+              onClick={cancelar}
             />
           </div>
         )}

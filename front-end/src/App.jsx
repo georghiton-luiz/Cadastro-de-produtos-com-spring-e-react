@@ -55,6 +55,7 @@ const App = () => {
   //Limpar formulário
   const limparFormulario = () => {
     setObjProduto(produto);
+    setBtnCadastrar(true);
   };
 
   //Selecionar produto
@@ -71,6 +72,7 @@ const App = () => {
         eventoTeclado={aoDigitar}
         cadastrar={cadastrar}
         obj={objProduto}
+        cancelar={limparFormulario}
       />
       <TableComponent vetor={produtos} selecionar={selecionarProduto} />
     </>
