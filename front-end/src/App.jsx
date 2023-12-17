@@ -52,6 +52,44 @@ const App = () => {
       });
   };
 
+  //Alterar produto
+  const alterar = () => {
+    fetch("http://localhost:8080/alterar", {
+      method: "put",
+      body: JSON.stringify(objProduto),
+      headers: {
+        "Content-type": "application/json",
+        "Accept": "application/json",
+      },
+    })
+      .then((retorno) => retorno.json())
+      .then((retorno_convertido) => {
+        if (retorno_convertido.mensagem !== undefined) {
+          alert(retorno_convertido.mensagem);
+        } else {
+          //Mensagem
+          alert("Produto alterado com sucesso!");
+
+          //Copia do vero de produtos
+          let vetorTemp = [...produtos];
+
+          //Indice
+          let i = vetorTemp.findIndex((p) => {
+            return p.id === objProduto.id;
+          });
+
+          //Alterar produto do vetorTemp
+          vetorTemp[i] = objProduto;
+
+          //Atualizar o vetor de produtos
+          setProdutos(vetorTemp);
+
+          //Limpar o formulário
+          limparFormulario();
+        }
+      });
+  };
+
   //Remover produto
   const remover = () => {
     fetch(`http://localhost:8080/remover/${objProduto.id}`, {
@@ -64,10 +102,10 @@ const App = () => {
       .then((retorno) => retorno.json())
       .then((retorno_convertido) => {
         //Menssagem
-        alert(retorno_convertido.mensagem)
+        alert(retorno_convertido.mensagem);
 
         //Copia do vero de produtos
-        let vetorTemp = [...produtos]
+        let vetorTemp = [...produtos];
 
         //Indice
         let indice = vetorTemp.findIndex((p) => {
@@ -107,6 +145,7 @@ const App = () => {
         obj={objProduto}
         cancelar={limparFormulario}
         remover={remover}
+        alterar={alterar}
       />
       <TableComponent vetor={produtos} selecionar={selecionarProduto} />
     </>

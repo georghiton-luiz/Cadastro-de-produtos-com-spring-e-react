@@ -5,6 +5,7 @@ const FormComponent = ({
   obj,
   cancelar,
   remover,
+  alterar,
 }) => {
   return (
     <>
@@ -36,7 +37,12 @@ const FormComponent = ({
           />
         ) : (
           <div>
-            <input className="btn btn-warning" type="button" value="Alterar" />
+            <input
+              className="btn btn-warning"
+              type="button"
+              value="Alterar"
+              onClick={alterar}
+            />
             <input
               className="btn btn-danger"
               type="button"
