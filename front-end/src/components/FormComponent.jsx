@@ -1,27 +1,36 @@
-const FormComponent = ({botao}) => {
+const FormComponent = ({botao, eventoTeclado, cadastrar}) => {
   return (
     <>
       <form>
         <h2>Produtos</h2>
-        <input className="form-control" type="text" placeholder="Nome" />
-        <input className="form-control" type="text" placeholder="Marca" />
+        <input
+          className="form-control"
+          onChange={eventoTeclado}
+          name='name'
+          type="text"
+          placeholder="Nome"
+        />
+        <input
+          className="form-control"
+          onChange={eventoTeclado}
+          name="marca"
+          type="text"
+          placeholder="Marca"
+        />
 
-        {
-            botao
-            ? 
-            <input className="btn btn-primary" type="button" value="Cadastrar" />
-            : 
-            <div>
+        {botao ? (
+          <input className="btn btn-primary" type="button" value="Cadastrar" onClick={cadastrar} />
+        ) : (
+          <div>
             <input className="btn btn-warning" type="button" value="Alterar" />
             <input className="btn btn-danger" type="button" value="Remover" />
             <input
-                className="btn btn-secondary"
-                type="button"
-                value="Cancelar"
+              className="btn btn-secondary"
+              type="button"
+              value="Cancelar"
             />
-            </div>
-        }
-        
+          </div>
+        )}
       </form>
     </>
   );
