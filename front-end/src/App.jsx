@@ -37,7 +37,7 @@ const App = () => {
       body: JSON.stringify(objProduto),
       headers: {
         "Content-type": "application/json",
-        Accept: "application/json",
+        "Accept": "application/json",
       },
     })
       .then((retorno) => retorno.json())
@@ -52,6 +52,39 @@ const App = () => {
       });
   };
 
+  //Remover produto
+  const remover = () => {
+    fetch(`http://localhost:8080/remover/${objProduto.id}`, {
+      method: "delete",
+      headers: {
+        "Content-type": "application/json",
+        "Accept": "application/json",
+      },
+    })
+      .then((retorno) => retorno.json())
+      .then((retorno_convertido) => {
+        //Menssagem
+        alert(retorno_convertido.mensagem)
+
+        //Copia do vero de produtos
+        let vetorTemp = [...produtos]
+
+        //Indice
+        let indice = vetorTemp.findIndex((p) => {
+          return p.id === objProduto.id;
+        });
+
+        //Remover produto do vetorTemp
+        vetorTemp.splice(indice, 1);
+
+        //Atualizar o vetor de produtos
+        setProdutos(vetorTemp);
+
+        //Limpar formulário
+        limparFormulario();
+      });
+  };
+
   //Limpar formulário
   const limparFormulario = () => {
     setObjProduto(produto);
@@ -60,9 +93,9 @@ const App = () => {
 
   //Selecionar produto
   const selecionarProduto = (i) => {
-    setObjProduto(produtos[i])
-    setBtnCadastrar(false)
-  }
+    setObjProduto(produtos[i]);
+    setBtnCadastrar(false);
+  };
 
   //Retorno
   return (
@@ -73,6 +106,7 @@ const App = () => {
         cadastrar={cadastrar}
         obj={objProduto}
         cancelar={limparFormulario}
+        remover={remover}
       />
       <TableComponent vetor={produtos} selecionar={selecionarProduto} />
     </>
