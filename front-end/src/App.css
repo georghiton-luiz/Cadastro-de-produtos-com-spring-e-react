@@ -1,0 +1,18 @@
+form{
+    width: 500px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+form h2{
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form input{
+    margin-bottom: 5px;
+}
+
+form input[type='button']{
+    margin-right: 10px;
+}

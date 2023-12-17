@@ -23,6 +23,11 @@ public class ProdutoServico {
         return pr.findAll();
     }
 
+    //Método para listar 1 produto
+    // public Iterable<ProdutoModel> listarPorId(long id){        
+    //     return pr.findById(id);
+    // }
+
     //Método para cadastrar ou alterar produtos
     public ResponseEntity<?> cadastrarAlterar(ProdutoModel pm, String acao){
         if (pm.getName().equals("")) {
