@@ -1,4 +1,4 @@
-const TableComponent = ({ vetor }) => {
+const TableComponent = ({ vetor, selecionar }) => {
   return (
     <table className="table">
       <thead>
@@ -16,7 +16,7 @@ const TableComponent = ({ vetor }) => {
             <td>{obj.name}</td>
             <td>{obj.marca}</td>
             <td>
-              <button className="btn btn-success">Selecionar</button>
+              <button className="btn btn-success" onClick={() => {selecionar(i)}}>Selecionar</button>
             </td>
           </tr>
         ))}

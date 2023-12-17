@@ -57,6 +57,12 @@ const App = () => {
     setObjProduto(produto);
   };
 
+  //Selecionar produto
+  const selecionarProduto = (i) => {
+    setObjProduto(produtos[i])
+    setBtnCadastrar(false)
+  }
+
   //Retorno
   return (
     <>
@@ -66,7 +72,7 @@ const App = () => {
         cadastrar={cadastrar}
         obj={objProduto}
       />
-      <TableComponent vetor={produtos} />
+      <TableComponent vetor={produtos} selecionar={selecionarProduto} />
     </>
   );
 };
